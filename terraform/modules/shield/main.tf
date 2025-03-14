@@ -2,12 +2,11 @@
 
 # Enable AWS Shield Advanced
 resource "aws_shield_protection_group" "all_resources" {
-  count                                     = var.enable_advanced ? 1 : 0
-  protection_group_id                       = "all-resources"
-  aggregation                               = "MAX"
-  pattern                                   = "ALL"
-  resource_type                             = "CLOUDFRONT_DISTRIBUTION"
-  protection_group_arn                      = aws_shield_protection_group.all_resources[0].arn
+  count                = var.enable_advanced ? 1 : 0
+  protection_group_id  = "all-resources"
+  aggregation          = "MAX"
+  pattern              = "ALL"
+  resource_type        = "CLOUDFRONT_DISTRIBUTION"
 }
 
 # Create Shield Advanced protection for specific resources
