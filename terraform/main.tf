@@ -52,8 +52,8 @@ module "shield" {
 module "guardduty" {
   source = "./modules/guardduty"
   
-  enable_guardduty         = var.enable_guardduty
-  notification_email       = var.guardduty_notification_email
+  enable_guardduty    = var.enable_guardduty
+  notification_email  = var.guardduty_notification_email
 }
 
 # AWS Config Module - Compliance Monitoring
@@ -63,4 +63,30 @@ module "config" {
   s3_bucket_name      = var.config_s3_bucket_name
   enable_config       = var.enable_config
   notification_email  = var.config_notification_email
+}
+
+# Outputs
+output "security_groups" {
+  description = "Security groups created by the framework"
+  value = {
+    web     = module.security_groups.web_sg_id
+    app     = module.security_groups.app_sg_id
+    db      = module.security_groups.db_sg_id
+    bastion = module.security_groups.bastion_sg_id
+  }
+}
+
+output "waf_web_acl_arn" {
+  description = "ARN of the WAF Web ACL"
+  value       = module.waf.web_acl_arn
+}
+
+output "guardduty_detector_id" {
+  description = "ID of the GuardDuty detector"
+  value       = module.guardduty.detector_id
+}
+
+output "config_recorder_id" {
+  description = "ID of the AWS Config recorder"
+  value       = module.config.recorder_id
 }
