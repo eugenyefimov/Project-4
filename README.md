@@ -53,16 +53,17 @@ This project implements a comprehensive security framework for AWS cloud environ
 1. Clone the repository
 2. Update the `terraform.tfvars` file with your specific configuration
 3. Initialize Terraform:
-```bash
+```
 terraform init
+```
 
 4. Review the planned changes:
-```bash
+```
 terraform plan
  ```
 
 5. Apply the changes:
-```bash
+```
 terraform apply
  ```
 
