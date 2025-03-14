@@ -54,3 +54,12 @@ guardduty_notification_email = "security-alerts@example.com"
 enable_config = true
 config_s3_bucket_name = "example-org-aws-config-logs-123456789012"  # Globally unique bucket name
 config_notification_email = "compliance@example.com"
+
+# Add these variables to your existing terraform.tfvars file
+
+# CloudTrail Configuration
+# CloudTrail provides audit logging for all API calls in your AWS account.
+enable_cloudtrail = true
+cloudtrail_bucket_name = "example-org-cloudtrail-logs-123456789012"  # Globally unique bucket name
+enable_log_validation = true
+is_multi_region_trail = true

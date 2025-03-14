@@ -56,6 +56,16 @@ module "guardduty" {
   notification_email  = var.guardduty_notification_email
 }
 
+# CloudTrail Module - Audit Logging
+module "cloudtrail" {
+  source = "./modules/cloudtrail"
+  
+  enable_cloudtrail       = var.enable_cloudtrail
+  cloudtrail_bucket_name  = var.cloudtrail_bucket_name
+  enable_log_validation   = var.enable_log_validation
+  is_multi_region_trail   = var.is_multi_region_trail
+}
+
 # AWS Config Module - Compliance Monitoring
 module "config" {
   source = "./modules/config"
@@ -84,6 +94,11 @@ output "waf_web_acl_arn" {
 output "guardduty_detector_id" {
   description = "ID of the GuardDuty detector"
   value       = module.guardduty.detector_id
+}
+
+output "cloudtrail_trail_arn" {
+  description = "ARN of the CloudTrail trail"
+  value       = module.cloudtrail.trail_arn
 }
 
 output "config_recorder_id" {
